@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oakstead Light Foundation — Health, Dignity, Hope</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --indigo-deep:#14213D;
+    --indigo-mid:#22335C;
+    --amber:#E8A33D;
+    --amber-soft:#F3C468;
+    --paper:#FBF8F2;
+    --forest:#435E3A;
+    --ink:#262420;
+    --ink-soft:#5B564C;
+    --line:#E5DFD2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;color:var(--indigo-deep);letter-spacing:-0.01em;}
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .container{max-width:1180px;margin:0 auto;padding:0 32px;}
+  .eyebrow{
+    display:flex;align-items:center;gap:10px;
+    font-size:13px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--forest);font-weight:600;margin-bottom:16px;
+  }
+  .eyebrow svg{width:18px;height:18px;flex-shrink:0;}
+  :focus-visible{outline:2px solid var(--amber);outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(20,33,61,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    max-width:1180px;margin:0 auto;padding:16px 32px;
+  }
+  .logo{display:flex;align-items:center;gap:10px;color:#fff;font-family:'Fraunces',serif;font-size:19px;font-weight:600;}
+  .logo svg,.logo img{width:34px;height:34px;object-fit:contain;border-radius:6px;}
+  .nav-links{display:flex;align-items:center;gap:28px;}
+  .nav-links a{color:rgba(255,255,255,0.82);font-size:14.5px;font-weight:500;transition:color .2s;}
+  .nav-links a:hover{color:var(--amber-soft);}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:11px 24px;border-radius:3px;font-weight:600;font-size:14.5px;
+    transition:transform .18s ease, box-shadow .18s ease;
+    cursor:pointer;border:none;
+  }
+  .btn-amber{background:var(--amber);color:var(--indigo-deep);}
+  .btn-amber:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(232,163,61,0.35);}
+  .btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,0.4);}
+  .btn-outline:hover{border-color:#fff;}
+  .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px;}
+  .menu-toggle span{display:block;width:24px;height:2px;background:#fff;margin:5px 0;transition:.25s;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;overflow:hidden;
+    background:linear-gradient(180deg, var(--indigo-deep) 0%, var(--indigo-mid) 55%, #3B4A72 78%, var(--amber-soft) 100%);
+    padding:100px 0 0;
+    color:#fff;
+  }
+  .hero-inner{
+    max-width:1180px;margin:0 auto;padding:60px 32px 140px;
+    display:flex;flex-direction:column;align-items:flex-start;position:relative;z-index:2;
+  }
+  .hero-eyebrow{
+    font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--amber-soft);
+    font-weight:600;margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(34px,5.4vw,60px);color:#fff;font-weight:500;line-height:1.12;
+    max-width:820px;margin-bottom:24px;
+  }
+  .hero h1 em{font-style:italic;font-weight:400;color:var(--amber-soft);}
+  .hero p.lead{
+    font-size:18px;color:rgba(255,255,255,0.82);max-width:560px;margin-bottom:38px;font-weight:400;
+  }
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;}
+  .sun-wrap{
+    position:absolute;right:-60px;top:40px;width:420px;height:420px;z-index:1;opacity:0.9;
+  }
+  @keyframes rise{
+    from{transform:translateY(40px);opacity:0;}
+    to{transform:translateY(0);opacity:0.9;}
+  }
+  .sun-wrap{animation:rise 1.4s ease-out;}
+  .horizon-svg{position:absolute;bottom:-2px;left:0;width:100%;display:block;z-index:2;}
+
+  .trust-strip{
+    background:var(--indigo-deep);
+    padding:0 0 26px;
+    text-align:center;
+  }
+  .trust-strip p{
+    color:rgba(255,255,255,0.75);font-size:13.5px;letter-spacing:0.03em;
+    display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
+  }
+  .trust-strip .dot{width:4px;height:4px;border-radius:50%;background:var(--amber);display:inline-block;}
+
+  /* ---------- SECTION SPACING ---------- */
+  section{padding:100px 0;}
+  .section-head{max-width:640px;margin-bottom:56px;}
+  .section-head h2{font-size:clamp(28px,3.6vw,40px);font-weight:500;line-height:1.2;}
+  .section-head p{color:var(--ink-soft);font-size:16.5px;margin-top:14px;}
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--paper);}
+  .about-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:70px;align-items:center;}
+  .about-art{
+    position:relative;aspect-ratio:1/1;border-radius:6px;
+    background:radial-gradient(circle at 30% 30%, var(--amber-soft), var(--amber) 40%, var(--indigo-mid) 100%);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+  }
+  .about-art svg{width:60%;height:60%;opacity:0.95;}
+  .about-text p{color:var(--ink-soft);font-size:16.5px;margin-bottom:22px;max-width:560px;}
+  .values-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;}
+  .value-chip{
+    border:1px solid var(--line);background:#fff;border-radius:4px;
+    padding:14px 18px;flex:1 1 130px;
+  }
+  .value-chip .label{font-family:'Fraunces',serif;font-weight:600;color:var(--indigo-deep);font-size:15px;margin-bottom:4px;}
+  .value-chip .sub{font-size:12.5px;color:var(--ink-soft);}
+
+  /* Vision & Mission */
+  .vm-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px;}
+  .vm-card{background:#fff;border:1px solid var(--line);border-left:4px solid var(--amber);border-radius:6px;padding:30px 32px;}
+  .vm-card .vm-label{font-size:12px;text-transform:uppercase;letter-spacing:0.1em;color:var(--forest);font-weight:700;margin-bottom:12px;}
+  .vm-card p{font-family:'Fraunces',serif;font-style:italic;font-weight:300;color:var(--indigo-deep);font-size:17px;line-height:1.55;}
+
+  /* ---------- OBJECTIVES ---------- */
+  .objectives{background:var(--paper);border-top:1px solid var(--line);}
+  .objectives-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px 44px;}
+  .objective-item{display:flex;gap:16px;align-items:flex-start;}
+  .obj-num{
+    flex-shrink:0;width:32px;height:32px;border-radius:50%;background:var(--indigo-deep);
+    color:var(--amber-soft);display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-weight:600;font-size:14px;
+  }
+  .objective-item p{color:var(--ink-soft);font-size:15px;padding-top:5px;}
+
+  /* ---------- SERVICES ---------- */
+  .services{background:#F4EFE3;}
+  .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .service-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:6px;
+    padding:34px 30px;transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .service-card:hover{transform:translateY(-5px);box-shadow:0 16px 32px rgba(20,33,61,0.08);}
+  .service-icon{
+    width:48px;height:48px;border-radius:50%;background:var(--indigo-deep);
+    display:flex;align-items:center;justify-content:center;margin-bottom:22px;
+  }
+  .service-icon svg{width:24px;height:24px;stroke:var(--amber-soft);}
+  .service-card h3{font-size:19px;font-weight:600;margin-bottom:12px;}
+  .service-card p{color:var(--ink-soft);font-size:15px;margin-bottom:20px;}
+  .loc-tags{display:flex;gap:8px;flex-wrap:wrap;}
+  .loc-tag{
+    font-size:11.5px;font-weight:600;letter-spacing:0.03em;color:var(--forest);
+    background:rgba(67,94,58,0.1);padding:5px 10px;border-radius:3px;
+  }
+
+  /* ---------- PROJECTS / BLOG ---------- */
+  .projects{background:var(--paper);}
+  .project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .project-card{
+    background:#fff;border:1px solid var(--line);border-radius:8px;overflow:hidden;
+    display:flex;flex-direction:column;transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .project-card:hover{transform:translateY(-5px);box-shadow:0 18px 34px rgba(20,33,61,0.1);}
+  .project-thumb{
+    position:relative;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;overflow:hidden;
+  }
+  .project-thumb svg{width:56%;height:56%;}
+  .project-photo{width:100%;height:100%;object-fit:cover;object-position:center 30%;}
+  .mini-gallery{display:flex;gap:8px;margin-bottom:18px;}
+  .mini-gallery img{
+    width:56px;height:56px;object-fit:cover;border-radius:5px;border:1px solid var(--line);
+  }
+  .thumb-zombo{background:linear-gradient(160deg, var(--indigo-mid), var(--amber-soft));}
+  .thumb-pakwachi{background:linear-gradient(160deg, #2C4A2A, var(--amber-soft));}
+  .thumb-nebbi{background:linear-gradient(160deg, var(--indigo-deep), #6E7FAE);}
+  .featured-badge{
+    position:absolute;top:14px;left:14px;background:var(--amber);color:var(--indigo-deep);
+    font-size:11px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;
+    padding:5px 10px;border-radius:3px;
+  }
+  .project-body{padding:26px 26px 28px;display:flex;flex-direction:column;flex:1;}
+  .project-meta{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--ink-soft);margin-bottom:12px;font-weight:600;}
+  .project-meta .ptag{color:var(--forest);background:rgba(67,94,58,0.1);padding:4px 9px;border-radius:3px;letter-spacing:0.02em;}
+  .project-card h3{font-size:18px;font-weight:600;margin-bottom:10px;line-height:1.3;}
+  .project-card p{color:var(--ink-soft);font-size:14.5px;margin-bottom:20px;flex:1;}
+  .read-more{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;color:var(--indigo-deep);transition:gap .2s;}
+  .read-more svg{width:14px;height:14px;stroke:var(--indigo-deep);}
+  .read-more:hover{gap:11px;color:var(--forest);}
+  .projects-footer{display:flex;justify-content:center;margin-top:48px;}
+  .btn-ghost{background:transparent;color:var(--indigo-deep);border:1.5px solid var(--indigo-deep);}
+  .btn-ghost:hover{background:var(--indigo-deep);color:#fff;}
+
+  /* ---------- CONTACT ---------- */
+  .contact{background:var(--paper);}
+  .contact-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:64px;}
+  .contact-info h3{font-size:15px;text-transform:uppercase;letter-spacing:0.08em;color:var(--indigo-deep);margin-bottom:24px;}
+  .info-item{display:flex;gap:14px;margin-bottom:24px;align-items:flex-start;}
+  .info-item svg{width:20px;height:20px;stroke:var(--forest);flex-shrink:0;margin-top:2px;}
+  .info-item .t{font-weight:600;font-size:14.5px;margin-bottom:2px;}
+  .info-item .d{color:var(--ink-soft);font-size:14.5px;}
+
+  form{background:#fff;border:1px solid var(--line);border-radius:8px;padding:38px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+  .field{display:flex;flex-direction:column;gap:7px;}
+  .field.full{grid-column:1/-1;}
+  label{font-size:13px;font-weight:600;color:var(--ink);}
+  input,textarea{
+    border:1.5px solid var(--line);border-radius:4px;padding:12px 14px;
+    font-family:'Inter',sans-serif;font-size:14.5px;color:var(--ink);background:var(--paper);
+    transition:border-color .2s;
+  }
+  input:focus,textarea:focus{outline:none;border-color:var(--amber);}
+  textarea{resize:vertical;min-height:110px;}
+  .form-note{font-size:12.5px;color:var(--ink-soft);margin-top:12px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--indigo-deep);color:rgba(255,255,255,0.78);padding:72px 0 0;}
+  .footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.2fr;gap:48px;padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,0.1);}
+  .footer-logo{display:flex;align-items:center;gap:10px;color:#fff;font-family:'Fraunces',serif;font-size:19px;font-weight:600;margin-bottom:16px;}
+  .footer-logo svg,.footer-logo img{width:32px;height:32px;object-fit:contain;border-radius:6px;}
+  .footer-col h4{color:#fff;font-size:13.5px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:20px;font-weight:600;}
+  .footer-col p{font-size:14px;line-height:1.7;margin-bottom:20px;max-width:280px;}
+  .footer-col ul{list-style:none;}
+  .footer-col ul li{margin-bottom:12px;}
+  .footer-col ul a{font-size:14px;transition:color .2s;}
+  .footer-col ul a:hover{color:var(--amber-soft);}
+  .social-row{display:flex;gap:12px;margin-top:6px;}
+  .social-row a{
+    width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,0.25);
+    display:flex;align-items:center;justify-content:center;transition:background .2s, border-color .2s;
+  }
+  .social-row a:hover{background:var(--amber);border-color:var(--amber);}
+  .social-row svg{width:15px;height:15px;stroke:#fff;}
+  .newsletter{display:flex;margin-top:8px;border-radius:4px;overflow:hidden;border:1px solid rgba(255,255,255,0.25);}
+  .newsletter input{
+    flex:1;border:none;background:rgba(255,255,255,0.06);color:#fff;padding:11px 14px;font-size:13.5px;
+  }
+  .newsletter input::placeholder{color:rgba(255,255,255,0.5);}
+  .newsletter button{background:var(--amber);border:none;padding:0 16px;cursor:pointer;font-weight:600;color:var(--indigo-deep);font-size:13px;}
+  .footer-bottom{
+    display:flex;justify-content:space-between;align-items:center;padding:24px 0;
+    font-size:12.5px;color:rgba(255,255,255,0.5);flex-wrap:wrap;gap:12px;
+  }
+  .footer-bottom a{color:rgba(255,255,255,0.5);}
+  .footer-bottom a:hover{color:#fff;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .about-grid,.contact-grid{grid-template-columns:1fr;}
+    .about-art{max-width:340px;margin:0 auto;}
+    .vm-grid{grid-template-columns:1fr;}
+    .objectives-grid{grid-template-columns:1fr;}
+    .service-grid{grid-template-columns:1fr;}
+    .project-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;row-gap:40px;}
+    .sun-wrap{opacity:0.35;right:-120px;}
+  }
+  @media (max-width:720px){
+    .nav-links{position:fixed;top:64px;left:0;right:0;background:var(--indigo-deep);
+      flex-direction:column;align-items:flex-start;padding:24px 32px;gap:20px;
+      transform:translateY(-130%);transition:transform .3s ease;border-bottom:1px solid rgba(255,255,255,0.08);}
+    .nav-links.open{transform:translateY(0);}
+    .menu-toggle{display:block;}
+    .hero-inner{padding-bottom:100px;}
+    .form-row{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    section{padding:72px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="logo">
+      <img src="assets/logo.png" alt="Oakstead Light Foundation logo">
+      Oakstead Light
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#top">Home</a>
+      <a href="#about">About</a>
+      <a href="#objectives">Objectives</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="btn btn-amber">Donate</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Sexual & Reproductive Health · Mental Health Outreach</p>
+    <h1>Health, dignity, and hope, <em>carried to where the sun rises first.</em></h1>
+    <p class="lead">Oakstead Light Foundation brings sexual and reproductive health education and mental health support to communities across Zombo, Pakwachi, and Nebbi — led by trained volunteers, backed by people like you.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-amber">Donate today</a>
+      <a href="#contact" class="btn btn-outline">Become a volunteer</a>
+    </div>
+  </div>
+  <div class="sun-wrap">
+    <svg viewBox="0 0 400 400" fill="none">
+      <circle cx="230" cy="180" r="70" fill="#F3C468"/>
+      <g stroke="#F3C468" stroke-width="2" opacity="0.6">
+        <circle cx="230" cy="180" r="110"/>
+        <circle cx="230" cy="180" r="150"/>
+      </g>
+    </svg>
+  </div>
+  <svg class="horizon-svg" viewBox="0 0 1440 80" preserveAspectRatio="none" fill="none">
+    <path d="M0 40 Q 360 0 720 40 T 1440 40 V80 H0 Z" fill="#FBF8F2"/>
+  </svg>
+</section>
+
+<div class="trust-strip">
+  <p><span class="dot"></span> Zombo District <span class="dot"></span> Pakwachi <span class="dot"></span> Nebbi <span class="dot"></span> Community-led since day one</p>
+</div>
+
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div class="about-art">
+      <svg viewBox="0 0 200 200" fill="none">
+        <path d="M20 130c15-40 45-60 80-60s65 20 80 60" stroke="#14213D" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <circle cx="100" cy="70" r="26" fill="#14213D"/>
+        <circle cx="100" cy="70" r="40" stroke="#14213D" stroke-width="2" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="about-text">
+      <div class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" fill="#E8A33D"/><path d="M2 20c2-6 6-9 10-9s8 3 10 9" stroke="#E8A33D" stroke-width="1.6"/></svg>
+        Our Story
+      </div>
+      <h2>Built by the communities it serves.</h2>
+      <p>Oakstead Light Foundation started with a simple observation: young people and families across West Nile's rural districts had little safe, judgment-free access to sexual and reproductive health information, or to mental health support after crisis. We set out to close that gap — not with clinics from the outside, but with trained local volunteers who already have the community's trust.</p>
+      <p>Today, our teams run outreach sessions, peer counseling, and school-based education programs across Zombo, Pakwachi, and Nebbi — funded almost entirely by individual donors and supported by a growing volunteer network.</p>
+      <div class="values-row">
+        <div class="value-chip"><div class="label">Respect</div><div class="sub">For human rights</div></div>
+        <div class="value-chip"><div class="label">Equity</div><div class="sub">& inclusion</div></div>
+        <div class="value-chip"><div class="label">Integrity</div><div class="sub">& accountability</div></div>
+        <div class="value-chip"><div class="label">Compassion</div><div class="sub">In every interaction</div></div>
+        <div class="value-chip"><div class="label">Empowerment</div><div class="sub">Not dependency</div></div>
+        <div class="value-chip"><div class="label">Confidentiality</div><div class="sub">Always protected</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="vm-grid">
+      <div class="vm-card">
+        <div class="vm-label">Our Vision</div>
+        <p>"A society where every individual enjoys optimal mental well-being, exercises their sexual and reproductive rights freely, and lives a healthy, dignified, and empowered life."</p>
+      </div>
+      <div class="vm-card">
+        <div class="vm-label">Our Mission</div>
+        <p>"To promote mental health and sexual and reproductive health and rights through education, advocacy, research, community engagement, and access to quality support services, especially for vulnerable populations."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="objectives" id="objectives">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" fill="#435E3A"/><path d="M2 20c2-6 6-9 10-9s8 3 10 9" stroke="#435E3A" stroke-width="1.6"/></svg>
+        Our Objectives
+      </div>
+      <h2>What we're working toward.</h2>
+      <p>Our general objective is to improve the mental health and sexual and reproductive well-being of individuals and communities through awareness, empowerment, advocacy, and access to essential services.</p>
+    </div>
+    <div class="objectives-grid">
+      <div class="objective-item"><span class="obj-num">1</span><p>Promote mental health awareness and reduce stigma associated with mental illness.</p></div>
+      <div class="objective-item"><span class="obj-num">2</span><p>Improve access to mental health support and counseling services.</p></div>
+      <div class="objective-item"><span class="obj-num">3</span><p>Advance sexual and reproductive health education and awareness.</p></div>
+      <div class="objective-item"><span class="obj-num">4</span><p>Advocate for the protection and promotion of sexual and reproductive health rights.</p></div>
+      <div class="objective-item"><span class="obj-num">5</span><p>Empower young people, women, and vulnerable groups to make informed health decisions.</p></div>
+      <div class="objective-item"><span class="obj-num">6</span><p>Strengthen community participation in health promotion and disease prevention.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" fill="#435E3A"/><path d="M2 20c2-6 6-9 10-9s8 3 10 9" stroke="#435E3A" stroke-width="1.6"/></svg>
+        What We Do
+      </div>
+      <h2>Three programs, one goal: healthier, safer communities.</h2>
+      <p>Each program is delivered on the ground by trained volunteers, in partnership with local leaders and schools.</p>
+    </div>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+        </div>
+        <h3>Sexual & Reproductive Health Rights</h3>
+        <p>Accurate, confidential education on reproductive health, family planning, and rights — delivered in schools and community centers.</p>
+        <div class="loc-tags"><span class="loc-tag">Zombo</span><span class="loc-tag">Nebbi</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2a5.5 5.5 0 0 0-4 9.3A6 6 0 0 0 8 22h4a6 6 0 0 0 2.5-10.7A5.5 5.5 0 0 0 9.5 2z"/><path d="M9.5 2v9.3M12 22v-7"/></svg>
+        </div>
+        <h3>Mental Health Outreach</h3>
+        <p>Peer counseling and crisis support that meets people where they are — reducing stigma around seeking help.</p>
+        <div class="loc-tags"><span class="loc-tag">Pakwachi</span><span class="loc-tag">Zombo</span></div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17.5" cy="9" r="2.6"/><path d="M15.5 12.5a5 5 0 0 1 6 5"/></svg>
+        </div>
+        <h3>Community Empowerment</h3>
+        <p>Volunteer training and local leadership programs that build lasting capacity, not one-off aid.</p>
+        <div class="loc-tags"><span class="loc-tag">Nebbi</span><span class="loc-tag">Pakwachi</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="projects" id="projects">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" fill="#E8A33D"/><path d="M2 20c2-6 6-9 10-9s8 3 10 9" stroke="#E8A33D" stroke-width="1.6"/></svg>
+        From The Field
+      </div>
+      <h2>Project updates from Zombo, Pakwachi & Nebbi.</h2>
+      <p>Stories and progress reports from the ground, posted as our teams complete each phase of work.</p>
+    </div>
+    <div class="project-grid">
+      <article class="project-card">
+        <div class="project-thumb thumb-zombo">
+          <span class="featured-badge">Featured</span>
+          <img src="assets/zombo-team-1.jpg" alt="Oakstead Light Foundation team outside Paidha Town Council offices, Zombo District" class="project-photo">
+        </div>
+        <div class="project-body">
+          <div class="project-meta"><span class="ptag">Zombo</span><span>June 2026</span></div>
+          <h3>Zombo Youth Peer Education Launch</h3>
+          <p>Our first cohort of 40 peer educators completed training this month and began weekly SRHR sessions in five Zombo secondary schools — reaching over 600 students in the first two weeks alone.</p>
+          <div class="mini-gallery">
+            <img src="assets/zombo-team-2.jpg" alt="Oakstead Light Foundation team, Zombo outreach visit">
+            <img src="assets/zombo-team-3.jpg" alt="Oakstead Light Foundation team, Zombo outreach visit">
+          </div>
+          <a href="#" class="read-more">Read update <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="project-thumb thumb-pakwachi">
+          <svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="42" r="16" fill="#FBF8F2" opacity="0.9"/><path d="M14 74c8-18 22-27 36-27s28 9 36 27" stroke="#FBF8F2" stroke-width="3" stroke-linecap="round" opacity="0.9"/></svg>
+        </div>
+        <div class="project-body">
+          <div class="project-meta"><span class="ptag">Pakwachi</span><span>April 2026</span></div>
+          <h3>Weekly Peer Support Circles Begin</h3>
+          <p>Trained volunteer counselors launched weekly mental health peer-support circles in three Pakwachi parishes, giving community members a confidential, judgment-free space to talk.</p>
+          <a href="#" class="read-more">Read update <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="project-thumb thumb-nebbi">
+          <svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="42" r="16" fill="#FBF8F2" opacity="0.9"/><path d="M14 74c8-18 22-27 36-27s28 9 36 27" stroke="#FBF8F2" stroke-width="3" stroke-linecap="round" opacity="0.9"/></svg>
+        </div>
+        <div class="project-body">
+          <div class="project-meta"><span class="ptag">Nebbi</span><span>February 2026</span></div>
+          <h3>Volunteer Training Cohort Graduates</h3>
+          <p>25 new community volunteers completed our six-week training program covering outreach facilitation, safeguarding, and basic counseling — ready to support programs across all three districts.</p>
+          <a href="#" class="read-more">Read update <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </article>
+    </div>
+    <div class="projects-footer">
+      <a href="#" class="btn btn-ghost">View all projects</a>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" fill="#E8A33D"/><path d="M2 20c2-6 6-9 10-9s8 3 10 9" stroke="#E8A33D" stroke-width="1.6"/></svg>
+        Get In Touch
+      </div>
+      <h2>Donate, volunteer, or just say hello.</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Reach us</h3>
+        <div class="info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div>
+            <div class="t">Head office</div>
+            <div class="d">Bweyogerere Central, Kira Municipality, Wakiso District, Uganda</div>
+            <div class="d">P.O. Box 860960, Kireka</div>
+          </div>
+        </div>
+        <div class="info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1.1.4 2.1.7 3.1a2 2 0 0 1-.5 2.1L8 10.1a16 16 0 0 0 6 6l1.2-1.3a2 2 0 0 1 2.1-.5c1 .3 2 .6 3.1.7a2 2 0 0 1 1.6 2.9z"/></svg>
+          <div><div class="t">Phone</div><div class="d">0756 586190</div></div>
+        </div>
+        <div class="info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg>
+          <div><div class="t">Email</div><div class="d">hello@oaksteadlight.org</div></div>
+        </div>
+      </div>
+      <form onsubmit="return false;">
+        <div class="form-row">
+          <div class="field"><label for="fname">Full name</label><input id="fname" type="text" placeholder="Your name" required></div>
+          <div class="field"><label for="femail">Email</label><input id="femail" type="email" placeholder="you@email.com" required></div>
+        </div>
+        <div class="form-row">
+          <div class="field full"><label for="freason">I'm reaching out to</label>
+            <input id="freason" type="text" placeholder="Donate / Volunteer / Partner / General inquiry">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field full"><label for="fmsg">Message</label><textarea id="fmsg" placeholder="Tell us a little about what you'd like to do" required></textarea></div>
+        </div>
+        <button type="submit" class="btn btn-amber" style="width:100%;">Send message</button>
+        <p class="form-note">This form is static for now — connect it to your email service or backend to receive submissions.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <img src="assets/logo.png" alt="Oakstead Light Foundation logo">
+          Oakstead Light
+        </div>
+        <p>Bringing sexual and reproductive health education and mental health support to West Nile's communities — one volunteer, one household at a time.</p>
+        <div class="social-row">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M14 9h3V5h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V9a1 1 0 0 1 1-1z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 4l16 16M20 4 4 20"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick links</h4>
+        <ul>
+          <li><a href="#top">Home</a></li>
+          <li><a href="#about">About us</a></li>
+          <li><a href="#objectives">Objectives</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Programs</h4>
+        <ul>
+          <li><a href="#services">Zombo outreach</a></li>
+          <li><a href="#services">Pakwachi outreach</a></li>
+          <li><a href="#services">Nebbi outreach</a></li>
+          <li><a href="#contact">Volunteer with us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Stay updated</h4>
+        <p>Get program updates and impact stories, twice a month.</p>
+        <div class="newsletter">
+          <input type="email" placeholder="Your email">
+          <button>Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Oakstead Light Foundation. All rights reserved.</p>
+      <p><a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms of Use</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+</script>
+
+</body>
+</html>
